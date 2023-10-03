@@ -1,7 +1,11 @@
 Version: 0.7
-Main contributors:
+
+**Main contributors:**
+
 Piotr L. Makowski (2014-2018)
+
 Paweł Ossowski (2020-2022)
+
 Wojciech Krauze (2016-now)
 
 ### What is this repository for? ###
