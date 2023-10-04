@@ -1,5 +1,3 @@
-Version: 0.7
-
 **Main contributors:**
 
 Piotr L. Makowski (2014-2018)
