@@ -13,6 +13,7 @@ EWALD is an open-source software that implements 3 optical diffraction tomograph
 The scientific description of the GPSC method can be found in [1,2]:
 
 [1] W. Krauze, P. Makowski, M. Kujawińska, and A. Kuś, “Generalized total variation iterative constraint strategy in limited angle optical diffraction tomography,” Opt. Express 24(5), 4924–4936 (2016).
+
 [2] W. Krauze "Optical diffraction tomography with finite object support for the minimization of missing cone artifacts," Biomed. Opt. Express 11(4), 1919-1926 (2020).
 
 ### How do I get set up? ###
