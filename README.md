@@ -40,3 +40,12 @@ The code is shared under GPLv3 license. If you use this code, please cite one of
 - if you use the reflection mode, please cite:
 
 [4] W. Krauze, P. Ossowski, M. Nowakowski, M. Szkulmowski, M. Kujawińska "Enhanced QPI functionality by combining OCT and ODT methods," Proc. SPIE 11653, 19-24 (2021).
+
+**Main contributors:**
+- Piotr L. Makowski (2014-2018)
+- Paweł Ossowski (2020-2022)
+- Wojciech Krauze (2016-now)
+
+**Other contributors:** 
+- Michał Ziemczonok 
+- Piotr Stępień.
