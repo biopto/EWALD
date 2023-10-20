@@ -100,10 +100,10 @@ if Masking
 
     %% Stage 1.1 - Generation of an object suppport	
     A = opTomo('cuda', proj_geom, vol_geom);
-    TV3D = astra.tv.opTV3D(N_CP) ;
+    TV3D = opTV3D(N_CP) ;
     starting_point = zeros(N_CP,N_CP,N_CP);
     scale = 0.05; %0.05 for demon
-    x_tv = astra.tv.chambolle_pock(...
+    x_tv = chambolle_pock(...
                     scale*A, TV3D, (1-2*(do_NNC<0))*scale*SINOph_CP(:), nCPi, 0.002, true, starting_point(:));
     clear SINOph_CP starting_point TV3D A
     x_tv = (1-2*(do_NNC<0))*x_tv;
