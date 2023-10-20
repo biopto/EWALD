@@ -49,3 +49,7 @@ The code is shared under GPLv3 license. If you use this code, please cite one of
 **Other contributors:** 
 - Michał Ziemczonok 
 - Piotr Stępień.
+
+### Dependencies
+ASTRA Tomography Toolbox [astra-toolbox/astra-toolbox: ASTRA Tomography Toolbox (github.com)](https://github.com/astra-toolbox/astra-toolbox)
+pyl1 [3cHeLoN/pyl1 (github.com)](https://github.com/3cHeLoN/pyl1)
