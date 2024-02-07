@@ -9,8 +9,8 @@ function[Y] = fcreatemask3d(X,type)
     X(X<0)=0;
     X = mat2gray(X);
     if strcmp(type,'adaptive')
-        X = adaptthresh(X,'neigh',[15 15 3],'Fore','bright');
-        X(X>0.01) = 1; X(X<=0.01) = 0;
+        T = adaptthresh(X,'neigh',[99 99 99],'Fore','bright');
+        X = imbinarize(X,T);
         % mask = +X.*mask_sphere;
         mask = +X;
     elseif strcmp(type,'otsu')
