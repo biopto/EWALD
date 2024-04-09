@@ -53,4 +53,16 @@ else
     end
 end
 
+%default solver params
+Approx = 'Rytov';% Born,Rytov,PhaseRay(non-diffractive) % weak scattering approximation
+Ramp = false;%0 % Ram-Lak filter on/off (FAT, nGPi==0)
+
+% First, upsample Kspace in 'z' direction to guarantee precise positioning of projections on Ewald spheres
+Kspace_oversampling_z = 1.000;%currently not advised to change
+
+projection_padding_xy = 1.000;%1.0(alfaz>1.0),1.375(alfaz==1:GRID-3D) % projection padding factor for 3-D Fourier oversampling
+% Interpolation method for Fp(NA) resampling before mapping onto Ewald mesh
+% NOTE: with N_Kspace_z_padded_upsampled > N_Kspace_xy_padded only 'none' is useful!
+interpFp = 'none'; % none(no resampling), linc(phase tilt), {nearest,linear,cubic,spline, ...}(interp2 methods)
+
 tic;

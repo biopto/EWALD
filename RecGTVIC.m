@@ -8,21 +8,23 @@ close all
 [path, ~, ~] = fileparts(mfilename('fullpath'));
 addpath(genpath(path));
 
+%%%%%%%%% START OF PARAMETERS SECTION:
+
 %% Reconstruction Presets
 DI; ... % direct inversion (no iterations)
 % GP; ... % iterations
 % GPSC; ... % iterations + finite object support
 
-%% Load sinogram and system basic parameters
-loadfiles;
-
-%% Assume defaults for unspecified things
-defaults;
-
-%% Projection parameters
+%% Optimization parameters
+% After filling all projections: there is no useful information in 'z' far from center, so we can crop it by downsampling Kspace before IFT - must be power of 2
+ROI_crop_z = 4; % 1 / 2 / 4 (1 - no crop)
+% Resolution in 'z' is 4x worse then 'xy' so before IFT, Kspace can be cropped in 'z' to 0.25 of its original size
+limit_resolution_z = 0.25; % 0.25 / 0.5 / 1 (1 - no crop)
 sinogram_subset_factor = 1;     % default = 1     % take every Nth projection from sinogram
 projection_crop_factor = 1;     % default = 1;    % crop factor (<=1)
 resample_projections   = false; % default = false % resample projections to minimal safe resolution
+
+%% Save reconstruction?
 save_reconstruction    = 1;     % default = 0     % save the reconstruction REC(y,x,z)
 
 %% Plots
@@ -39,6 +41,14 @@ save_reconstruction    = 1;     % default = 0     % save the reconstruction REC(
 %                  - show the process of filling K-space with projections
 %                  - show the process of filling K-space with projections- also show spectrum of projection with dimmed out frequencies aroud NA
 plots = '1';
+
+%%%%%%%%% END OF PARAMETER SECTION
+
+%% Load sinogram and system basic parameters
+loadfiles;
+
+%% Assume defaults for unspecified things
+defaults;
 
 %% Preparing data for reconstruction
 [SINOamp_reduced,SINOph_reduced, sino_params, dx, ...
