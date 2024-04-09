@@ -24,7 +24,6 @@ sinogram_subset_factor = 1;     % default = 1     % take every Nth projection fr
 projection_crop_factor = 1;     % default = 1;    % crop factor (<=1)
 resample_projections   = false; % default = false % resample projections to minimal safe resolution
 save_reconstruction    = 1;     % default = 0     % save the reconstruction REC(y,x,z)
-obj_type               = 'otsu'; % default = 'otsu' % only in GPSC: segmentation method for object support generation 'adaptive' or 'otsu'
 
 %% Plots
 % show selected plots:
@@ -56,7 +55,7 @@ plots = '1';
 		geometry,Approx,interpFp,Ramp,do_NNC, ... % solver approximations
 		projection_padding_xy, Kspace_padding, N_projection_padded, Kspace_oversampling_z, ROI_crop_z, limit_resolution_z, ... % Fourier space sampling
 		nGPi,epsi,relaxGP,relaxM, ... % Gerchberg-Papoulis iterationsnGPi
-		x_tv, obj_type, n_obj_res, ... % Gerchberg-Papoulis object constraints/reference
+		x_tv, n_obj_res, ... % Gerchberg-Papoulis object constraints/reference
 		plots, Fpmask);
 
 %% Display and save

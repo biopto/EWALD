@@ -10,7 +10,7 @@ function [RECON,dxo_xy,dxo_z, nGPi, N_Kspace_xy, KO,KOi, RMAEtab,RRMSEtab,RMADta
 						geometry,Approx,interpFp,Ramp,do_NNC, ... % solver approximations
 						projection_padding_xy, Kspace_padding, N_projection, Kspace_oversampling_z, ROI_crop_z, limit_resolution_z,... % Fourier space sampling 
 						nGPi,epsi,relaxGP,relaxM, ... % Gerchberg-Papoulis iterations
-						x_tv, obj_type, n_obj, ... % Gerchberg-Papoulis object constraints/reference
+						x_tv, n_obj, ... % Gerchberg-Papoulis object constraints/reference
 						plots, Fpmask)
 
 % (even sizes everywhere)
@@ -541,7 +541,7 @@ if ~isempty(x_tv)
         x_tv = ndcrop(x_tv, [size(x_tv,1) size(x_tv,2) size(KO,3)]);
     end
     %% Create object support from x_tv
-    object_support = fcreatemask3d(abs(x_tv),obj_type);
+    object_support = fcreatemask3d(abs(x_tv));
     object_support = imfill(object_support,'holes');
 
     n_rec = x_tv+n_imm;		
