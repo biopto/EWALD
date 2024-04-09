@@ -24,7 +24,7 @@ sinogram_subset_factor = 1;     % default = 1     % take every Nth projection fr
 projection_crop_factor = 1;     % default = 1;    % crop factor (<=1)
 resample_projections   = false; % default = false % resample projections to minimal safe resolution
 save_reconstruction    = 1;     % default = 0     % save the reconstruction REC(y,x,z)
-obj_type               = 'adaptive'; % default = 'adaptive' % only in GPSC: segmentation method for object support generation 'adaptive' or 'otsu'
+obj_type               = 'otsu'; % default = 'otsu' % only in GPSC: segmentation method for object support generation 'adaptive' or 'otsu'
 
 %% Plots
 % show selected plots:
@@ -50,7 +50,7 @@ plots = '1';
                 projection_padding_xy, plots, do_NNC);
 
 %% Calculating reconstruction   
-[RECON, dx, nGPi, N_Kspace_xy_padded, KO,KOi, RMAEtab,RRMSEtab,RMADtab,RRMSDtab] = ...
+[RECON, dx, dz, nGPi, N_Kspace_xy_padded, KO,KOi, RMAEtab,RRMSEtab,RMADtab,RRMSDtab] = ...
 	FDT(SINOamp_reduced,SINOph_reduced, sino_params, thetay, ... % sinogram (including index of OCT proj)
 		n_imm,dx, ... % optical system (ODT and OCT)
 		geometry,Approx,interpFp,Ramp,do_NNC, ... % solver approximations

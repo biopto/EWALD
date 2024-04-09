@@ -4,7 +4,7 @@
 % 2015-2018 Piotr L. Makowski, 
 % 2019-2021 Wojciech Krauze, Paweł Ossowski
 % -------------------------------------------------------------------------
-function [RECON,dxo_xy, nGPi, N_Kspace_xy, KO,KOi, RMAEtab,RRMSEtab,RMADtab,RRMSDtab] = ...
+function [RECON,dxo_xy,dxo_z, nGPi, N_Kspace_xy, KO,KOi, RMAEtab,RRMSEtab,RMADtab,RRMSDtab] = ...
 			FDT(SINOamp,SINOph, sino_params, thetay, ... % sinogram
 						n_imm,dx_projection, ... % optical system
 						geometry,Approx,interpFp,Ramp,do_NNC, ... % solver approximations
