@@ -62,10 +62,6 @@ plots = '1';
 time=toc;
 sim_time = show_time(time);
 
-% if wavelengths_oct==0; rec_mode = 'ODT';
-% elseif wavelengths_odt==0; rec_mode = 'OCT';
-% end
-
 if save_reconstruction
     save_recon;
 end
