@@ -12,7 +12,7 @@ Example of tomographic reconstructions can be found [here](https://biophase.pl/e
 
 Currently, only the Matlab version of the software is available. To get the code running:
 1. Download the repository
-2. Download an example measurement dataset: [Sinogram_03_hacat_03.mat](https://wutwaw-my.sharepoint.com/:u:/g/personal/wojciech_krauze_pw_edu_pl/Ed-8DABhSV1Elr5gUhCPy6IBOy4L5YOw-q1TZgDYVA5IBw?e=QWH0jE).
+2. Download an example measurement dataset: [Sinogram_03_hacat_03.mat](https://gofile.me/57tEO/NnMXyJmcA).
 3. Run the RecGTVIC.m file in Matlab.
 
 If you want to use the GPSC algorithm with advanced total-variation minimization you need to make these 2 additional steps before running RecGTVIC.m:
