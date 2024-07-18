@@ -102,7 +102,7 @@ qFp = 1;%1(none,spline),>1(others) % upsampling factor for Fp prior interpolatio
 % progress params
 Nc = 120;% cropped cube size for incremental difference evaluation
 % apply transparency constraint: imag(n_rec)=0
-do_TC = true;%true
+do_TC = false;% transparency constraint
 tukr = 0.25;%0.25  % Tukey window radius for projections (Approx=Born, interpFp=linc)
 % relaxed suppression of reconstruction padding  from Fourier oversampling (<=1, 0:disable)
 relaxLaR = 0;%1.00, 0.99(best with N_Kspace_z_padded_upsampled > N_Kspace_xy_padded), 0:disable !!!!
@@ -813,6 +813,6 @@ KO = single(zeros(size(KOi)));
 KO(EWi) = EKO;
 
 % RECONSTRUCTION (y,x,z)
-RECON = permute(real(n_rec), [2 1 3]); % (y,x,z)
+RECON = permute((n_rec), [2 1 3]); % (y,x,z)
 % N_Kspace_z_padded_upsampled cropped to N_Kspace_xy_padded / alfa (cropping the Z axis to match sizes in X and Y directions):
 RECON = ndcrop(RECON, [N_Kspace_xy/projection_padding_xy N_Kspace_xy/projection_padding_xy N_Kspace_z_upsampled_cropped/Kspace_oversampling_z]);

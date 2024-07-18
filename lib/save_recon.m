@@ -1,5 +1,9 @@
 disp('Saving reconstruction...')
     
+    if save_reconstruction == 1
+        RECON = real(RECON);
+    end
+
     FileName = 'REC[';
     if Masking
         FileName = strcat(FileName,'GPSC]');

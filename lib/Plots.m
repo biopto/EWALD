@@ -64,7 +64,7 @@ revcolors = false; % reverse jet colormap (for rec_complex < n_imm)
 % cross-section coords in [N_Kspace_xy_padded N_Kspace_xy_padded N_Kspace_xy_padded] cube
 cx0 = round(N_Kspace_xy_padded/projection_padding_xy/2)+1;
 cy0 = round(N_Kspace_xy_padded/projection_padding_xy/2)+1;
-cz0 = round(N_Kspace_xy_padded/projection_padding_xy/2)+0;
+cz0 = round(N_Kspace_z_padded_upsampled/2)+0;
 % % manual
 % cx0 = 202;%202(Meth)
 % cy0 = 194;%194(Meth)
@@ -75,12 +75,7 @@ cz0 = round(N_Kspace_xy_padded/projection_padding_xy/2)+0;
 % Nc = 200;%100
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
-if all(sino_params(5,:)==2) 
-    Kz_slice = 50;
-else; Kz_slice = size(KO,3)/2+1; 
-end
-
+Kz_slice = size(KO,3)/2+1; 
 
 % Collect reconstruction info (x,y,z)
 N_projection_padded = round(N_projection_padded/2)*2;
@@ -139,13 +134,13 @@ end
 if ~isempty(n_obj)		
     tmp_rec = OBJ(...
                 round(0.3*size(RECON,1)) : round(0.7*size(RECON,1)),...
-                round(0.3*size(RECON,1)) : round(0.7*size(RECON,1)),...
-                round(0.3*size(RECON,1)) : round(0.7*size(RECON,1)))-is_n0*n0;
+                round(0.3*size(RECON,2)) : round(0.7*size(RECON,2)),...
+                round(0.3*size(RECON,3)) : round(0.7*size(RECON,3)))-is_n0*n0;
 else
     tmp_rec = RECON(...
                 round(0.3*size(RECON,1)) : round(0.7*size(RECON,1)),...
-                round(0.3*size(RECON,1)) : round(0.7*size(RECON,1)),...
-                round(0.3*size(RECON,1)) : round(0.7*size(RECON,1)))-is_n0*n0;
+                round(0.3*size(RECON,2)) : round(0.7*size(RECON,2)),...
+                round(0.3*size(RECON,3)) : round(0.7*size(RECON,3)))-is_n0*n0;
 end
 nm = max(abs(tmp_rec(:)));
 clear tmp_rec
@@ -160,8 +155,8 @@ end
 
 %  slices
 corr_n0 = +(~is_n0&show_n0)*n0 -(~show_n0&is_n0)*n0;% correction for n0
-rec_zx = squeeze(RECON(cy,:,:) + corr_n0).';%(prim: make X horizontal)
-rec_yx = squeeze(RECON(:,:,cz) + corr_n0);
+rec_zx = real(squeeze(RECON(cy,:,:) + corr_n0).');%(prim: make X horizontal)
+rec_yx = real(squeeze(RECON(:,:,cz) + corr_n0));
 if ~isempty(OBJ) % calculate Quality Index for one slice
     obj_zx = squeeze(OBJ(cy,:,:) + corr_n0).'; %  one slice (prim: make X horizontal)
     diff_zx = rec_zx - obj_zx;
@@ -244,12 +239,12 @@ for ii=1:2 % repeat to correct subplot sizes
                   title 'RECON x-y'
     % 				  title(sprintf('cz=%d',cz)) 
                   caxis(clims)
-    if ~isempty(OBJ)
-                  title(sprintf('REC x-y; MAE=%.3fe-3, MSE=%.3fe-3',RMAEtab(nGPi+1)*1e3,RRMSEtab(nGPi+1)*1e3))
-    				  RMAE_REC = norm(RECON(:)-OBJ(:),1)/norm(OBJ(:),1);
-    				  RRMSE_REC = norm(RECON(:)-OBJ(:),2)/norm(OBJ(:),2);
-    				  title(sprintf('MAE=%.3fe-3, MSE=%.3fe-3',RMAE_REC*1e3,RRMSE_REC*1e3))
-    end
+    % if ~isempty(OBJ)
+    %               title(sprintf('REC x-y; MAE=%.3fe-3, MSE=%.3fe-3',RMAEtab(nGPi+1)*1e3,RRMSEtab(nGPi+1)*1e3))
+    % 				  RMAE_REC = norm(RECON(:)-OBJ(:),1)/norm(OBJ(:),1);
+    % 				  RRMSE_REC = norm(RECON(:)-OBJ(:),2)/norm(OBJ(:),2);
+    % 				  title(sprintf('MAE=%.3fe-3, MSE=%.3fe-3',RMAE_REC*1e3,RRMSE_REC*1e3))
+    % end
     subplot(248); hold on
                   if ~isempty(OBJ)
                   plot(real(obj_yx(cy,:)), 'b', 'LineWidth',1)

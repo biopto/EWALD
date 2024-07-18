@@ -1,7 +1,6 @@
 %% Tomographic Reconstruction with Gerchberg-Papoulis algorithm + Finite Object Support
 % Authors: Piotr Makowski, Wojciech Krauze, Paweł Ossowski
-% Warsaw University of Technology, 2023
-% Version: 0.7
+% Warsaw University of Technology, 2024
 
 clear; clc;
 close all
@@ -25,7 +24,7 @@ projection_crop_factor = 1;     % default = 1;    % crop factor (<=1)
 resample_projections   = false; % default = false % resample projections to minimal safe resolution
 
 %% Save reconstruction?
-save_reconstruction    = 1;     % default = 0     % save the reconstruction REC(y,x,z)
+save_reconstruction    = 1;     % 0 - don't save; 1 - save RI; 2 - save RI and absorption (complex RI)
 
 %% Plots
 % show selected plots:
@@ -76,5 +75,5 @@ if save_reconstruction
     save_recon;
 end
 
-if contains(plots,'1'); vis(RECON, [min(RECON(:)), max(RECON(:))]); colormap jet; end
+if contains(plots,'1'); vis(real(RECON), [min(real(RECON(:))), max(real(RECON(:)))]); colormap jet; end
 if contains(plots,'5'); Plots; end
